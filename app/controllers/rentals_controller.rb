@@ -10,7 +10,7 @@ class RentalsController < ApplicationController
       @rental = Property.new(rental_params)
     else
       @rental = Property.new
-      2.times { @rental.nearest_station.build }  
+      2.times { @rental.nearest_stations.build }  
       # @rental.nearest_station.buildの「nearest_station」はアソシエーションメソッド
       # 別にnewでもいいが、慣習的にアソシエーションした状態のインスタンスを生成する際にはbuildメソッドを用いるようだ
       # {}内を2回繰り返し。rubyのtimesメソッドを使っているだけ
