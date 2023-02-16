@@ -6,5 +6,5 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
-  resources :nearest_stations
+  resources :properties  # resources :nearest_stationsではない
 end

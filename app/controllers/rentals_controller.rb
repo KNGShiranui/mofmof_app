@@ -21,7 +21,7 @@ class RentalsController < ApplicationController
   end
 
   def edit
-    @rental.nearest_station.build  #編集の際に最寄り駅を追加するための記述
+    @rental.nearest_stations.build  #編集の際に最寄り駅を追加するための記述
   end
 
   def create
@@ -32,7 +32,7 @@ class RentalsController < ApplicationController
       if @rental.save
         redirect_to rentals_path, notice: "物件情報を登録しました"
       else
-        rennder :new
+        render :new
       end
     end
   end
@@ -63,7 +63,8 @@ class RentalsController < ApplicationController
   end
 
   def rental_params
-    params.require(:property).permit(%i[name rent addres age remarks nearest_stations_attributes(%i[id line station time])])
+    params.require(:property).permit(:name, :rent, :address, :age, :remarks, nearest_stations_attributes:[:id, :station, :line, :time])
+    # params.require(:property).permit(%i[name rent address age remarks nearest_stations_attributes(%i[id line station time])])
     #TODO:ここは%iでは書けない？
     # :idがかなり重要。これがないと外部キーがなくて関連情報を引っ張ってくることができないはず
   end

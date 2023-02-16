@@ -10,7 +10,7 @@
   <% @rental.nearest_stations.each do |nearest_station| %>
     <h2>nearest station<%= n += 1 %></h2>
       <p>
-        <strong>路線名:</strong><%= nearest_station.route %>
+        <strong>路線名:</strong><%= nearest_station.line %>
       </p>
       <p>
         <strong>駅名:</strong><%= nearest_station.station %>
@@ -18,7 +18,7 @@
       <p>
         <strong>駅からの所要時間（徒歩）:</strong><%= nearest_station.time %>
       </p>
-  <% end %>
+  <% end %> 
 </div>
 
 <%= link_to '編集する', edit_rental_path %> |

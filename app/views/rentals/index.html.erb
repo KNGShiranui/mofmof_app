@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Pictures</h1>
+<h1>物件一覧</h1>
 
 <table>
   <tr>
     <th>物件名</th>
-    <th>賃料</th>
+    <th>賃料</th> 
     <th>住所</th>
     <th>築年数</th>
     <th>備考</th>
@@ -15,7 +15,7 @@
 <% @rentals.each do |rental| %>
   <tr>
     <td><%= rental.name %></td>
-    <td><%= rental.rent.to_s(:delimited)%> </td>
+    <td><%= rental.rent.to_i.to_s(:delimited)%> </td>
     <td><%= rental.address %></td>
     <td><%= rental.age %></td>
     <td><%= rental.remarks %></td>

@@ -1,9 +1,9 @@
-<%= form_with(model:@rental, local: true ,url: choose_new_or_edit ) do |form| %>
-<% if @rental.errors.any? %>
+<%= form_with(model: rental, local: true ,url: choose_new_or_edit ) do |form| %>
+<% if rental.errors.any? %>
   <div id="error_explanation">
-    <h2><%= @rental.errors.count %>You Have Made Errors</h2>
+    <h2><%= rental.errors.count %>You Have Made Errors</h2>
     <ul>
-    <% @rental.errors.full_messages.each do |msg| %>
+    <% rental.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
@@ -11,15 +11,15 @@
 <% end %>
 
 <div class="property_form">
-  <%= form.label :Property %><br>
+  <%= form.label :物件名 %><br>
   <%= form.text_field :name %><br>
-  <%= form.label :Rent %><br>
+  <%= form.label :賃料 %><br>
   <%= form.text_field :rent %><br>
-  <%= form.label :Address %><br>
+  <%= form.label :住所 %><br>
   <%= form.text_field :address %><br>
-  <%= form.label :'Age ' %><br>
-  <%= form.text_field :age %><span> year </span><br>
-  <%= form.label :Remarks %><br>
+  <%= form.label :築年数 %><br>
+  <%= form.text_field :age %>年<br>
+  <%= form.label :備考 %><br>
   <%= form.text_area :remarks %><br>
 </div>
 
@@ -27,15 +27,15 @@
     <% n = 0 %>  
     <%# TODO:n = 0　とn += 1の意味を検証すること %>
     <%= form.fields_for :nearest_stations do |near| %>
-      <h2>nearest_stations<%= n += 1 %></h2>
-      <%= near.label :line %><br>
+      <h2>最寄り駅<%= n += 1 %></h2>
+      <%= near.label :路線名 %><br>
       <%= near.text_field :line %><br>
-      <%= near.label :station %><br>
+      <%= near.label :駅名 %><br>
       <%= near.text_field :station %><br>
-      <%= near.label :'Minute to reach' %><br>
-      <%= near.text_field :time %><span> min </span><br>
+      <%= near.label :徒歩での所要時間%><br>
+      <%= near.text_field :time %><span> 分 </span><br>
     <% end %>
   </div>
   <%= form.submit %>
 <% end %>
-<%= link_to "Rental List screen", rentals_path %>
+<%= link_to "物件一覧", rentals_path %>
