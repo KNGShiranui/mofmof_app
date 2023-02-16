@@ -1,0 +1,18 @@
+<h3>以下の内容で登録しますか？</h3>
+<%= form_with(model: @rental, url: rentals_path, local: true) do |form| %>
+  <%= form.hidden_field :name %>
+  <%= form.hidden_field :rent %>
+  <%= form.hidden_field :address %>
+  <%= form.hidden_field :age %>
+  <%= form.hidden_field :remarks %>
+  <p>Property:<%= @rental.name %></p>
+  <p>Rent:<%= @rental.rent %></p>
+  <p>Adress:<%= @rental.address %></p>
+  <p>Building Age:<%= @rental.age %></p>
+  <p>Remarks:<%= @rental.remarks %></p>
+  <%= form.submit  "登録する" %>
+  <%= form.submit "戻る", name: 'back'  %>
+  <%#= link_to '戻る', :back %でも可能ではある %>
+<% end %>
+
+

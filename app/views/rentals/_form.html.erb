@@ -1,0 +1,41 @@
+<%= form_with(model:@rental, local: true ,url: choose_new_or_edit ) do |form| %>
+<% if @rental.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @rental.errors.count %>You Have Made Errors</h2>
+    <ul>
+    <% @rental.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="property_form">
+  <%= form.label :Property %><br>
+  <%= form.text_field :name %><br>
+  <%= form.label :Rent %><br>
+  <%= form.text_field :rent %><br>
+  <%= form.label :Address %><br>
+  <%= form.text_field :address %><br>
+  <%= form.label :'Age ' %><br>
+  <%= form.text_field :age %><span> year </span><br>
+  <%= form.label :Remarks %><br>
+  <%= form.text_area :remarks %><br>
+</div>
+
+  <div class="station_form">
+    <% n = 0 %>  
+    <%# TODO:n = 0　とn += 1の意味を検証すること %>
+    <%= form.fields_for :nearest_stations do |near| %>
+      <h2>nearest_stations<%= n += 1 %></h2>
+      <%= near.label :line %><br>
+      <%= near.text_field :line %><br>
+      <%= near.label :station %><br>
+      <%= near.text_field :station %><br>
+      <%= near.label :'Minute to reach' %><br>
+      <%= near.text_field :time %><span> min </span><br>
+    <% end %>
+  </div>
+  <%= form.submit %>
+<% end %>
+<%= link_to "Rental List screen", rentals_path %>

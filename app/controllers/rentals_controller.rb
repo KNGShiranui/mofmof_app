@@ -63,6 +63,8 @@ class RentalsController < ApplicationController
   end
 
   def rental_params
-    params.require(:property).permit(%i[name rent addres age remarks nearest_stations_attributes(%i[id line station time])])  #TODO:ここは%iでは書けない？
+    params.require(:property).permit(%i[name rent addres age remarks nearest_stations_attributes(%i[id line station time])])
+    #TODO:ここは%iでは書けない？
+    # :idがかなり重要。これがないと外部キーがなくて関連情報を引っ張ってくることができないはず
   end
 end
