@@ -1,0 +1,41 @@
+<%= form_with(model: rental, local: true ,url: choose_new_or_edit ) do |form| %>
+<% if rental.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= rental.errors.count %>You Have Made Errors</h2>
+    <ul>
+    <% rental.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="property_form">
+  <%= form.label :物件名 %><br>
+  <%= form.text_field :name %><br>
+  <%= form.label :賃料 %><br>
+  <%= form.text_field :rent %><br>
+  <%= form.label :住所 %><br>
+  <%= form.text_field :address %><br>
+  <%= form.label :築年数 %><br>
+  <%= form.text_field :age %>年<br>
+  <%= form.label :備考 %><br>
+  <%= form.text_area :remarks %><br>
+</div>
+
+  <div class="station_form">
+    <% n = 0 %>  
+    <%# TODO:n = 0　とn += 1の意味を検証すること %>
+    <%= form.fields_for :nearest_stations do |near| %>
+      <h2>最寄り駅<%= n += 1 %></h2>
+      <%= near.label :路線名 %><br>
+      <%= near.text_field :line %><br>
+      <%= near.label :駅名 %><br>
+      <%= near.text_field :station %><br>
+      <%= near.label :徒歩での所要時間%><br>
+      <%= near.text_field :time %><span> 分 </span><br>
+    <% end %>
+  </div>
+  <%= form.submit %>
+<% end %>
+<%= link_to "物件一覧", rentals_path %>

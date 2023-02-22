@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'rentals#index'
+  resources :rentals do  
+  # ルーティングはコントローラへの振り分けなのでモデル名ではなくコントローラ名で振り分け実行
+    collection do
+      post :confirm
+    end
+  end
+  resources :properties  # resources :nearest_stationsではない
 end
